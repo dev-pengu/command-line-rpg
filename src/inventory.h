@@ -23,6 +23,7 @@ namespace rpg
         void print() const;
         Inventory() {}
         Inventory(const Inventory&);
+        ~Inventory();
         void addItem(Item, int);
         bool removeItem(Item, int, rpg::Character*);
         Item& getItem(std::string);
@@ -32,6 +33,14 @@ namespace rpg
         for (int i = 0; i < items.size(); i++) {
             std::cout << (items[i])->item.getName() << " - " << (items[i])->count << std::endl;
         }
+    }
+
+    Inventory::~Inventory() {
+        for (int i = 0; i < items.size(); i++) {
+            delete items[i];
+            items[i] = nullptr;
+        }
+        items.clear();
     }
 
     Inventory::Inventory(const Inventory& otherInventory) {
@@ -65,6 +74,8 @@ namespace rpg
                     return false;
                 else if (currentSlot->count == count) {
                     currentSlot->remove(count, character); //TODO: Pass Character reference to use item
+                    delete currentSlot;
+                    currentSlot = nullptr;
                     items.erase(items.begin() + i);
                     return true;
                 }

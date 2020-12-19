@@ -43,7 +43,7 @@ namespace rpg {
         int getCriticalModifier();
         int getMaxHealth();
         int getCurrentHealth();
-        Equipment* getEquipment(int);
+        Equipment& getEquipment(int);
         int experienceToNextLevel();
         int getDefense();
 
@@ -78,7 +78,7 @@ namespace rpg {
 
     int Character::getCurrentHealth() { return _currentHealth; }
 
-    Equipment* Character::getEquipment(int index) { return &_equipment[index]; }
+    Equipment& Character::getEquipment(int index) { return _equipment[index]; }
 
     int Character::experienceToNextLevel() {
         return (int)(100 * ((1 - std::pow(b, _level))/(1 - b)) - 100 * ((1 - std::pow(b, _level - 1))/(1 - b)));
