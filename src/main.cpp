@@ -23,7 +23,7 @@ int main() {
     rpg::Item healthPotion("health-potion-20", "Health Potion");
     userCharacter.getInventory()->addItem(healthPotion, 3);
     userCharacter.getInventory()->print();
-    userCharacter.getInventory()->removeItem(healthPotion, 1);
+    userCharacter.getInventory()->removeItem(healthPotion, 1, &userCharacter);
     userCharacter.getInventory()->print();
     return 0;
 }
